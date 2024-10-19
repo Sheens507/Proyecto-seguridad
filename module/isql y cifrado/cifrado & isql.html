@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cifrado</title>
+    <script src="des_cif.js" defer></script>
+    <script src="pre_sql.js" defer></script>
+    
+</head>
+<body>
+    <h1>Procesador de Texto</h1>
+    <p>Esta sección se evalua un modulo de cifrado y descifrado de texto</p>
+    <textarea id="Texto" rows="4" cols="50" placeholder="Texto" minlength= 5></textarea>
+    <br>
+    <button onclick="crypto_js(1)">Cifrar</button> 
+    <button onclick="crypto_js(2)">Descifrar</button>
+    <h3>Resultado:</h3>
+    <p id="resultado"></p>
+    <br>
+
+    <h2>Formulario de Inicio de Sesión</h2>
+    <p>Esta sección se evalua un modulo de pre-revisión para inyecciones SQL</p>
+    <form onsubmit="procesarLogin(event)">
+        <label for="usuario">Nombre de Usuario o Correo Electrónico:</label><br>
+        <input type="text" id="usuario_I" name="usuario" required><br><br>
+
+        <label for="contrasena">Contraseña:</label><br>
+        <input type="password" id="contrasena_I" name="contrasena" required><br><br>
+
+        <button type="submit">Iniciar Sesión</button>
+    </form>
+
+    <p id="mensaje"></p>
+</body>
+</html>
