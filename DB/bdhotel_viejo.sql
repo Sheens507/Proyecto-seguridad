@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-11-2024 a las 02:29:09
+-- Tiempo de generación: 07-11-2024 a las 20:01:21
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -118,21 +118,12 @@ CREATE TABLE `asignacion` (
 --
 
 INSERT INTO `asignacion` (`ID_asig_PK`, `ID_reserv_FK`, `ID_hab_FK`) VALUES
-(37, 54, 15),
-(38, 55, 15),
-(39, 56, 15),
-(40, 57, 1),
-(41, 58, 6),
-(42, 59, 6),
-(43, 60, 11),
-(44, 61, 11),
-(45, 62, 11),
-(46, 63, 16),
-(47, 64, 16),
-(48, 65, 15),
-(49, 66, 17),
-(50, 67, 7),
-(51, 68, 12);
+(26, 43, 1),
+(27, 44, 2),
+(28, 45, 3),
+(29, 46, 4),
+(30, 47, 5),
+(31, 48, 6);
 
 -- --------------------------------------------------------
 
@@ -154,21 +145,13 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`ID_Cliente`, `Nombre_cli`, `Apellido_cli`, `Pais_cli`, `Tel_cli`, `Email_cli`) VALUES
-(92, 'Martin', 'Romero', 'PAN', '64742775', 'sheens0graviti@gmail.com'),
-(93, 'Martin', 'Romero', 'PAN', '64742775', 'sheens0graviti@gmail.com'),
-(94, 'Martin', 'Romero', 'PAN', '64742775', 'sheens0graviti@gmail.com'),
-(95, 'Martin', 'Romero', 'PAN', '64742775', 'sheens0graviti@gmail.com'),
-(96, 'Martin', 'Romero', 'PAN', '64742775', 'sheens0graviti@gmail.com'),
-(97, 'Martin', 'Romero', 'PAN', '64742775', 'sheens0graviti@gmail.com'),
-(98, 'Martin', 'Romero', 'PAN', '64742775', 'sheens0graviti@gmail.com'),
-(99, 'Martin', 'Romero', 'PAN', '64742775', 'sheens0graviti@gmail.com'),
-(100, 'Martin', 'Romero', 'PAN', '64742775', 'sheens0graviti@gmail.com'),
-(101, 'Martin', 'Romero', 'PAN', '64742775', 'sheens0graviti@gmail.com'),
-(102, 'Martin', 'Romero', 'PAN', '64742775', 'sheens0graviti@gmail.com'),
-(103, 'Martin', 'Romero', 'PAN', '64742775', 'sheens0graviti@gmail.com'),
-(104, 'Martin', 'Romero', 'PAN', '64742775', 'sheens0graviti@gmail.com'),
-(105, 'Martin', 'Romero', 'PAN', '64742775', 'sheens0graviti@gmail.com'),
-(106, 'Martin', 'Romero', 'PAN', '64742775', 'sheens0graviti@gmail.com');
+(81, 'Martin', 'Romero', 'PAN', '00000000', 'xxx@xxx.com'),
+(82, 'Martin', 'Romero', 'PAN', '00000000', 'xxx@xxx.com'),
+(83, 'Martin', 'Romero', 'PAN', '00000000', 'xxx@xxx.com'),
+(84, 'Martin', 'Romero', 'PAN', '00000000', 'xxx@xxx.com'),
+(85, 'Martin', 'Romero', 'PAN', '00000000', 'xxx@xxx.com'),
+(86, 'Martin', 'Romero', 'PAN', '00000000', 'xxx@xxx.com'),
+(87, 'Martin', 'Romero', 'PAN', '00000000', 'xxx@xxx.com');
 
 -- --------------------------------------------------------
 
@@ -228,21 +211,13 @@ CREATE TABLE `pago` (
 --
 
 INSERT INTO `pago` (`ID_pago`, `Titular_tar`, `Num_tar`, `Mes_ven`, `Ano_ven`, `ID_reserva_FK`) VALUES
-(39, 'Martin', '1957 3654 8451 6587', 12, 26, 54),
-(40, 'Martin', '1957 3654 8451 6587', 12, 26, 55),
-(41, 'Martin', '1957 3654 8451 6587', 12, 26, 56),
-(42, 'MARTIN ROMERO ', '4187941122430731', 12, 26, 57),
-(43, 'MARTIN ROMERO ', '4187941122430731', 12, 26, 58),
-(44, 'YAPPY', '9999999999', 0, 0, 59),
-(45, 'MARTIN ROMERO ', '4187941122430731', 12, 26, 60),
-(46, 'MARTIN ROMERO ', '4187941122430731', 12, 26, 61),
-(47, 'MARTIN ROMERO ', '4187941122430731', 12, 26, 62),
-(48, 'MARTIN ROMERO ', '4187941122430731', 12, 26, 63),
-(49, 'MARTIN ROMERO ', '4187941122430731', 12, 26, 64),
-(50, 'Martin', '1957 3654 8451 6587', 12, 26, 65),
-(51, 'MARTIN ROMERO ', '4187941122430731', 12, 26, 66),
-(52, 'MARTIN ROMERO ', '4187941122430731', 12, 26, 67),
-(53, 'MARTIN ROMERO ', '4187941122430731', 12, 26, 68);
+(28, 'YAPPY', '9999999999', 0, 0, 43),
+(29, 'YAPPY', '9999999999', 0, 0, 44),
+(30, 'YAPPY', '9999999999', 0, 0, 45),
+(31, 'YAPPY', '9999999999', 0, 0, 46),
+(32, 'YAPPY', '9999999999', 0, 0, 47),
+(33, 'YAPPY', '9999999999', 0, 0, 48),
+(34, 'YAPPY', '9999999999', 0, 0, 49);
 
 -- --------------------------------------------------------
 
@@ -268,21 +243,13 @@ CREATE TABLE `reservacion` (
 --
 
 INSERT INTO `reservacion` (`ID_reserv`, `Num_reserv`, `Fecha_ent`, `Fecha_sal`, `Estado`, `Num_adult`, `Num_ninos`, `Comentarios`, `Precio`, `ID_cliente_FK`) VALUES
-(54, 884774, '2025-04-07', '2025-04-08', 'Pagada', 3, 1, 'Forro anti-alergico', 111.00, 92),
-(55, 521669, '2025-04-07', '2025-04-08', 'Pagada', 3, 1, 'Forro anti-alergico', 111.00, 93),
-(56, 154824, '2025-04-07', '2025-04-08', 'Pagada', 3, 1, 'Forro anti-alergico', 111.00, 94),
-(57, 338545, '2025-04-07', '2025-04-08', 'Pagada', 3, 1, '', 100.00, 95),
-(58, 478504, '2025-04-06', '2025-04-08', 'Pagada', 3, 1, 'hola', 100.00, 96),
-(59, 895500, '2025-04-06', '2025-04-08', 'Pagada', 3, 1, 'hola', 100.00, 97),
-(60, 923420, '2025-04-07', '2025-04-08', 'Pagada', 3, 1, '', 111.00, 98),
-(61, 826657, '2025-04-07', '2025-04-08', 'Pagada', 3, 1, '', 111.00, 99),
-(62, 889544, '2025-04-07', '2025-04-08', 'Pagada', 3, 1, '', 111.00, 100),
-(63, 417001, '2025-04-07', '2025-04-08', 'Pagada', 3, 1, '', 111.00, 101),
-(64, 353386, '2025-04-07', '2025-04-08', 'Pagada', 3, 1, 'holaaas', 111.00, 102),
-(65, 445942, '2025-04-07', '2025-04-08', 'Pagada', 3, 1, 'Forro anti-alergico', 111.00, 103),
-(66, 808358, '2025-04-07', '2025-04-08', 'Pagada', 3, 1, '541654', 111.00, 104),
-(67, 432806, '2025-04-07', '2025-04-08', 'Pagada', 3, 1, 'dsajkgf', 111.00, 105),
-(68, 127233, '2025-04-07', '2025-04-08', 'Pagada', 3, 1, '123456789', 111.00, 106);
+(43, 696606, '2024-03-22', '2025-04-06', 'Pagada', 2, 0, NULL, 1000.50, 81),
+(44, 510468, '2024-03-22', '2025-04-06', 'Pagada', 2, 0, NULL, 1000.50, 82),
+(45, 464853, '2024-03-22', '2025-04-06', 'Pagada', 2, 0, NULL, 1000.50, 83),
+(46, 906576, '2024-03-22', '2025-04-06', 'Pagada', 2, 0, NULL, 1000.50, 84),
+(47, 708671, '2024-03-22', '2025-04-06', 'Pagada', 2, 0, NULL, 1000.50, 85),
+(48, 432576, '2024-03-22', '2025-04-06', 'Pagada', 2, 0, NULL, 1000.50, 86),
+(49, 280498, '2024-03-22', '2025-04-06', 'Pagada', 2, 0, NULL, 1000.50, 87);
 
 -- --------------------------------------------------------
 
@@ -332,8 +299,7 @@ INSERT INTO `usuario` (`id`, `usua_nombre`, `usua_correo`, `usua_password`, `usu
 (1, 'gabo', 'dasvdsa@dsavc.com', '149f00036617f2c10c9457af10540bf1', 2, 'Inactivo'),
 (2, 'gavo', 'dasvdsa1@dsavc.com', '149f00036617f2c10c9457af10540bf1', 2, 'Activo'),
 (3, 'gavo', 'dasvdsa1@dsavc.com', '149f00036617f2c10c9457af10540bf1', 2, 'Activo'),
-(4, 'gavo', 'dasvdsa1@dsavc.com', '149f00036617f2c10c9457af10540bf1', 2, 'Activo'),
-(6, 'CLIENTE', 'consulta@xxxx.com', '149f00036617f2c10c9457af10540bf1', 1, 'Activo');
+(4, 'gavo', 'dasvdsa1@dsavc.com', '149f00036617f2c10c9457af10540bf1', 2, 'Activo');
 
 -- --------------------------------------------------------
 
@@ -354,13 +320,8 @@ CREATE TABLE `usuarios_token` (
 --
 
 INSERT INTO `usuarios_token` (`id`, `usuario_id`, `token`, `estado`, `fecha`) VALUES
-(19, 2, '8a53af4e2762513bc7750067110a21c3', 'Inactivo', '2024-11-06 02:04:00'),
-(20, 2, 'c5140554db454081584697c8306748fd', 'Inactivo', '2024-11-06 03:41:00'),
-(21, 2, 'e9d7064366ad3e2484de4a4b9f57caaf', 'Inactivo', '2024-11-08 02:03:00'),
-(22, 2, '32769d5df880fcb25ee0aeb693e67204', 'Inactivo', '2024-11-08 05:10:00'),
-(23, 6, '4703c896c098cef0b8fef02c7e5fb8e8', 'Inactivo', '2024-11-08 05:13:00'),
-(24, 6, '4ba5c54263f08a88985fd45279dd35ab', 'Inactivo', '2024-11-08 05:16:00'),
-(25, 6, 'd0fcbfc3d2abf89fcda41a892a1cf3bf', 'Activo', '2024-11-08 05:19:00');
+(19, 2, '8a53af4e2762513bc7750067110a21c3', 'Activo', '2024-11-06 02:04:00'),
+(20, 2, 'c5140554db454081584697c8306748fd', 'Activo', '2024-11-06 03:41:00');
 
 -- --------------------------------------------------------
 
@@ -454,13 +415,13 @@ ALTER TABLE `usuarios_token`
 -- AUTO_INCREMENT de la tabla `asignacion`
 --
 ALTER TABLE `asignacion`
-  MODIFY `ID_asig_PK` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `ID_asig_PK` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `ID_Cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `ID_Cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT de la tabla `habitacion`
@@ -472,13 +433,13 @@ ALTER TABLE `habitacion`
 -- AUTO_INCREMENT de la tabla `pago`
 --
 ALTER TABLE `pago`
-  MODIFY `ID_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `ID_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `reservacion`
 --
 ALTER TABLE `reservacion`
-  MODIFY `ID_reserv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `ID_reserv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_habitacion`
@@ -490,13 +451,13 @@ ALTER TABLE `tipo_habitacion`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios_token`
 --
 ALTER TABLE `usuarios_token`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Restricciones para tablas volcadas
