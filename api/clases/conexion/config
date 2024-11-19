@@ -1,0 +1,9 @@
+{
+    "conexion": {
+        "server": "localhost",
+        "user": "root",
+        "password": "",
+        "database": "bdhotel",
+        "port": 3306
+    }
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservación de Hotel</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+</head>
+<body>
+    <div class="container">
+        <!-- Página 1 -->
+        <div id="page1" class="page">
+            <h2>Datos de Reservación</h2>
+            <label for="res_checkIn">Fecha de Entrada:</label>
+            <input type="date" id="res_checkIn" value="2025-04-07" required>
+            <label for="res_checkOut">Fecha de Salida:</label>
+            <input type="date" id="res_checkOut" value="2025-04-08" required>
+            <label for="res_cant_adul">Cantidad de Adultos:</label>
+            <input type="number" id="res_cant_adul" min="1" value="3" required>
+            <label for="res_cant_ninos">Cantidad de Niños:</label>
+            <input type="number" id="res_cant_ninos" min="0" value="1" required>
+            <button onclick="nextPage(2)">Siguiente</button>
+        </div>
+
+        <!-- Página 2 -->
+        <div class="page" id="page2" style="display: none;">
+            <h2>Habitaciones Disponibles</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>N° Habitación</th>
+                        <th>Tipo</th>
+                        <th>Precio</th>
+                        <th>Adultos</th>
+                        <th>Niños</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="roomsTableBody">
+                    
+                </tbody>
+            </table>
+            <button onclick="nextPage(3)">Next</button>
+        </div>        
+
+        <!-- Página 3 -->
+        <div id="page3" class="page" style="display: none;">
+            <h2>Resumen de Reservación</h2>
+            <p id="reservationSummary"></p>
+            <label for="note">Nota (opcional):</label>
+            <textarea id="note" rows="3"></textarea>
+            
+            <!-- Nueva sección de Datos de Cliente -->
+            <h3>Datos de Cliente</h3>
+            <label for="usu_nombre">Nombre:</label>
+            <input type="text" id="usu_nombre" required>
+            
+            <label for="usu_apellido">Apellido:</label>
+            <input type="text" id="usu_apellido" required >
+            
+            <label for="usu_pais">País:</label>
+            <select id="usu_pais">
+                <option value="PAN" selected>PAN</option>
+                <option value="USA">USA</option>
+                <option value="ESP">ESP</option>
+                <option value="ARG">ARG</option>
+                <!-- Puedes agregar más opciones de países aquí -->
+            </select>
+            
+            <label for="usu_telefono">Teléfono:</label>
+            <input type="number" id="usu_telefono" required >
+            
+            <label for="usu_email">Correo Electrónico:</label>
+            <input type="email" id="usu_email" required>
+            
+            <!-- Método de Pago -->
+            <h3>Método de Pago</h3>
+            <label><input type="radio" name="payment" value="tarjeta" checked> Tarjeta</label>
+            <div id="cardDetails">
+                <label for="cardNumber">Número de Tarjeta:</label>
+                <input type="text" id="cardNumber" maxlength="16">
+                
+                <label for="cardHolder">Nombre del Propietario:</label>
+                <input type="text" id="cardHolder">
+                
+                <label for="expiration">Fecha de Vencimiento (MM/YY):</label>
+                <input type="text" id="expiration" placeholder="MM/YY">
+            </div>
+            <label><input type="radio" name="payment" value="yappy"> YAPPY</label>
+            
+            <button onclick="nextPage(2)">Anterior</button>
+            <button onclick="submitForm()">Confirmar</button>
+        </div>
+        
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
