@@ -201,6 +201,17 @@
                               <select id="pago_mesven" class="form-control">
                                   <option value="">MM</option>
                                   <option value="01">01</option>
+                                  <option value="02">02</option>
+                                  <option value="03">03</option>
+                                  <option value="04">04</option>
+                                  <option value="05">05</option>
+                                  <option value="06">06</option>
+                                  <option value="07">07</option>
+                                  <option value="08">08</option>
+                                  <option value="09">09</option>
+                                  <option value="10">10</option>
+                                  <option value="11">11</option>
+                                  <option value="12">12</option>
                                   <!-- ... otros meses ... -->
                               </select>
                           </div>
@@ -212,6 +223,10 @@
                                   <option value="">YY</option>
                                   <option value="24">24</option>
                                   <option value="25">25</option>
+                                  <option value="26">26</option>
+                                  <option value="27">27</option>
+                                  <option value="28">28</option>
+                                  <option value="29">29</option>
                               </select>
                           </div>
                       </div>
@@ -335,7 +350,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
       <input type="hidden" id="room_id" name="room_id" value="">
   
       <!-- Muestra el precio total -->
-      <h3>Total a Pagar: <span id="room_price">$0.00</span></h3>
+      <!-- <h3>Total a Pagar: <span id="room_price">$0.00</span></h3> -->
       <!-- Resto del formulario -->
     </form>
     <!-- END footer -->
@@ -350,6 +365,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/jquery.waypoints.min.js"></script>
     <script src="js/jquery.stellar.min.js"></script>
+    <script src="../module/isql y cifrado/des_cif.js"></script>
 
     <script src="js/jquery.magnific-popup.min.js"></script>
     <script src="js/magnific-popup-options.js"></script>
@@ -361,7 +377,47 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
     <script src="js/main.js"></script>
     <script>
-document.addEventListener('DOMContentLoaded', () => {
+async function cargarConfig() {
+  try {
+    const response = await fetch('./config.json');
+    const config = await response.json();
+    apiKey = config.apiKey_google; // Asignar la variable global apiKey
+    api_token = config.token; // Asignar la variable global api_token
+    // console.log('Clave pública cargada:', apiKey);
+    // console.log('Token cargado:', api_token);
+    
+    // Cargar el script de reCAPTCHA de manera dinámica
+    cargarReCaptchaScript();
+  } catch (error) {
+    console.error('Error cargando la clave:', error);
+  }
+}
+
+// Función para cargar el script de reCAPTCHA
+function cargarReCaptchaScript() {
+  const script = document.createElement('script');
+  script.src = `https://www.google.com/recaptcha/api.js?render=${apiKey}`; // Incluir la apiKey
+  script.async = true;
+  script.defer = true;
+  document.head.appendChild(script); // Agregar el script a la cabecera del documento
+
+  script.onload = () => {
+    console.log('Script de reCAPTCHA cargado con éxito');
+    grecaptcha.ready(function() {
+      grecaptcha.execute(apiKey, {action: 'reservaciones'}).then(function(token) {
+        // console.log('Token de reCAPTCHA:', token);
+        // Asignar el token a la variable global
+        // tokenRecaptcha = token;
+      });
+    });
+    // Ahora puedes usar reCAPTCHA
+  };
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+    // Espera a que se carguen las configuraciones antes de continuar
+    await cargarConfig();
+
     // Al cargar la página, obtenemos los parámetros de la URL
     const roomId = getQueryParams('room_id');
     const roomPrice = getQueryParams('price');
@@ -417,6 +473,26 @@ function actualizarTotal() {
     }
 }
 
+function validateCardNumber(cardNumber) {
+    cardNumber = cardNumber.replace(/\s+/g, '');
+    if (!/^\d+$/.test(cardNumber)) {
+        return false;
+    }
+
+    let sum = 0;
+    let shouldDouble = false;
+    for (let i = cardNumber.length - 1; i >= 0; i--) {
+        let digit = parseInt(cardNumber.charAt(i));
+        if (shouldDouble) {
+            digit *= 2;
+            if (digit > 9) digit -= 9;
+        }
+        sum += digit;
+        shouldDouble = !shouldDouble;
+    }
+    return sum % 10 === 0;
+}
+
 // jQuery para inicializar el datepicker
 $(document).ready(function() {
     // Configuración del datepicker
@@ -452,7 +528,8 @@ $(document).ready(function() {
     $('#reservationForm').submit(function(e) {
         e.preventDefault();
         const reservationData = {
-            token: "d0fcbfc3d2abf89fcda41a892a1cf3bf", // Token de ejemplo
+            // token: "d0fcbfc3d2abf89fcda41a892a1cf3bf", // Token de ejemplo
+            token: api_token, // Token de la API
             usu_nombre: $('#usu_nombre').val(),
             usu_apellido: $('#usu_apellido').val(),
             usu_pais: $('#usu_pais').val(),
@@ -473,6 +550,23 @@ $(document).ready(function() {
             res_total: document.getElementById('precio_total').textContent // Total dinámico
         };
 
+        if (reservationData.tipo_pago === 'tarjeta') {
+            // Validar campos de tarjeta
+            if (!reservationData.pago_titular || !reservationData.pago_numtar || !reservationData.pago_mesven || !reservationData.pago_anoven) {
+                alert('Por favor complete los campos de la tarjeta de crédito');
+                return;
+            }else{
+              // llamar a la función de validación de tarjeta
+              if (!validateCardNumber(reservationData.pago_numtar)) {
+                alert('Número de tarjeta inválido');
+                return;
+              } else {
+                const pago_numtar = crypto_js(1, reservationData.pago_numtar);
+                // actualizamos el valor de la tarjeta
+                reservationData.pago_numtar = pago_numtar;
+              }
+            }
+        }
         // Mostrar indicador de carga
         const loader = document.getElementById('loader');
         if (loader) loader.classList.remove('d-none');
@@ -493,7 +587,7 @@ $(document).ready(function() {
             try {
                 const data = JSON.parse(text); // Intentamos parsear el JSON
                 if (data.status === 'ok') {
-                    alert('Reservación procesada con éxito');
+                    alert('Reservación procesada con éxito' + '\n' + 'ID de la reservación: ' + data.result.reservacionId);
                     $('#reservationForm')[0].reset(); // Resetear el formulario
                     loader.classList.add('d-none');
                 } else {
@@ -514,5 +608,9 @@ $(document).ready(function() {
 });
 
     </script>
+
+    <!-- <script>
+      console.log(grecaptcha);
+    </script> -->
 </body>
 </html>

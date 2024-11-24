@@ -12,11 +12,9 @@
 })();
 
 // Función para cifrar o descifrar el texto
-function crypto_js(opcion) {
-    // Obtener el valor del textarea
-    const texto = document.getElementById("Texto").value;
+function crypto_js(opcion, texto) {
     let generacion;
-    const clave = "miClaveSecreta"; // Esta es la clave para cifrar y descifrar
+    const clave = "Bp0FXqG=Lv6C,t,t_FLxUF?A5DxmCv"; // Esta es la clave para cifrar y descifrar
 
     // Validar que el texto no esté vacío
     if (texto.trim() === "" || texto === null || texto === undefined || texto.length <= 4) {
@@ -27,6 +25,7 @@ function crypto_js(opcion) {
     // Procesar según la opción
     if (opcion === 1) {
         generacion = cifrarTexto(texto, clave);
+        return generacion;
     } else if (opcion === 2) {
         generacion = descifrarTexto(texto, clave);
     } else {
@@ -58,3 +57,5 @@ function descifrarTexto(texto, clave) {
 
     return textoDescifrado;
 }
+
+window.crypto_js = crypto_js;
