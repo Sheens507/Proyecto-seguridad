@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>LuxuryHotel</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900|Rubik:300,400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+
+    <link rel="stylesheet" href="fonts/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css">
+
+    <!-- Theme Style -->
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    
+    <header role="banner">
+     
+      <nav class="navbar navbar-expand-md navbar-dark bg-light">
+        <div class="container">
+          <a class="navbar-brand" href="index.html">LuxuryHotel</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse navbar-light" id="navbarsExample05">
+            <ul class="navbar-nav ml-auto pl-lg-5 pl-0">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <!--
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="rooms.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Rooms</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown04">
+                  <a class="dropdown-item" href="rooms.html">Room Videos</a>
+                  <a class="dropdown-item" href="rooms.html">Presidential Room</a>
+                  <a class="dropdown-item" href="rooms.html">Luxury Room</a>
+                  <a class="dropdown-item" href="rooms.html">Deluxe Room</a>
+                </div>
+
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="blog.html">Blog</a>
+              </li>
+              -->
+              <li class="nav-item">
+                <a class="nav-link " href="about.html">Sobre nosotros</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="contact.html">Contacto</a>
+              </li>
+
+               <li class="nav-item cta">
+                <a class="nav-link" href="booknow.html"><span>Reserva ya</span></a>
+              </li>
+            </ul>
+            
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- END header -->
+
+    <section class="site-hero site-hero-innerpage overlay" data-stellar-background-ratio="0.5" style="background-image: url(images/big_image_1.jpg);">
+      <div class="container">
+        <div class="row align-items-center site-hero-inner justify-content-center">
+          <div class="col-md-12 text-center">
+
+            <div class="mb-5 element-animate">
+              <h1>Reservación</h1>
+              <p>Descubre el sitio de reservas #1 de Panamá.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END section -->
+
+    <section class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h2 class="mb-5">Form de Reservación </h2>
+            <form id="reservationForm">
+              <!-- Información Personal -->
+              <h4 class="mb-3">Información Personal</h4>
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="form-group">
+                          <label for="usu_nombre" class="required-field">Nombre</label>
+                          <input type="text" id="usu_nombre" class="form-control" required>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                          <label for="usu_apellido" class="required-field">Apellido</label>
+                          <input type="text" id="usu_apellido" class="form-control" required>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-4">
+                      <div class="form-group">
+                          <label for="usu_pais" class="required-field">País</label>
+                          <select id="usu_pais" class="form-control" required>
+                              <option value="">Seleccione un país</option>
+                              <option value="PAN">Panamá</option>
+                              <option value="COL">Colombia</option>
+                              <option value="MEX">México</option>
+                              <!-- Agregar más países según necesidad -->
+                          </select>
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="form-group">
+                          <label for="usu_telefono" class="required-field">Teléfono</label>
+                          <input type="tel" id="usu_telefono" class="form-control" required>
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="form-group">
+                          <label for="email" class="required-field">Correo Electrónico</label>
+                          <input type="email" id="email" class="form-control" required>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Fechas y Huéspedes -->
+              <h4 class="mb-3 mt-4">Fechas y Huéspedes</h4>
+              <div class="row">
+                  <div class="col-md-3">
+                      <div class="form-group">
+                          <label for="arrival_date" class="required-field">Fecha de Llegada</label>
+                          <input type="text" id="arrival_date" class="form-control" required>
+                      </div>
+                  </div>
+                  <div class="col-md-3">
+                      <div class="form-group">
+                          <label for="departure_date" class="required-field">Fecha de Salida</label>
+                          <input type="text" id="departure_date" class="form-control" required>
+                      </div>
+                  </div>
+                  <div class="col-md-3">
+                      <div class="form-group">
+                          <label for="adults" class="required-field">Número de Adultos</label>
+                          <input type="number" id="adults" class="form-control" min="1" required>
+                      </div>
+                  </div>
+                  <div class="col-md-3">
+                      <div class="form-group">
+                          <label for="children">Número de Niños</label>
+                          <input type="number" id="children" class="form-control" min="0" value="0">
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Información de Pago -->
+              <h4 class="mb-3 mt-4">Información de Pago</h4>
+              <div class="row">
+                  <div class="col-md-4">
+                      <div class="form-group">
+                          <label for="tipo_pago" class="required-field">Método de Pago</label>
+                          <select id="tipo_pago" class="form-control" required>
+                              <option value="">Seleccione método de pago</option>
+                              <option value="tarjeta">Tarjeta de Crédito</option>
+                              <option value="yappy">Yappy</option>
+                          </select>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Campos de tarjeta (se muestran/ocultan según el método de pago) -->
+              <div id="tarjeta_fields" style="display: none;">
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label for="pago_titular" class="required-field">Titular de la Tarjeta</label>
+                              <input type="text" id="pago_titular" class="form-control">
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label for="pago_numtar" class="required-field">Número de Tarjeta</label>
+                              <input type="text" id="pago_numtar" class="form-control" maxlength="16">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label for="pago_mesven" class="required-field">Mes de Vencimiento</label>
+                              <select id="pago_mesven" class="form-control">
+                                  <option value="">MM</option>
+                                  <option value="01">01</option>
+                                  <!-- ... otros meses ... -->
+                              </select>
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label for="pago_anoven" class="required-field">Año de Vencimiento</label>
+                              <select id="pago_anoven" class="form-control">
+                                  <option value="">YY</option>
+                                  <option value="24">24</option>
+                                  <option value="25">25</option>
+                              </select>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Notas -->
+              <div class="form-group mt-4">
+                  <label for="message">Notas o Comentarios</label>
+                  <textarea id="message" class="form-control" rows="3"></textarea>
+              </div>
+
+<!-- Resumen de Precio -->
+<div class="card mt-4 mb-4 bg-light">
+  <div class="card-body">
+      <h5>Resumen de Precio</h5>
+      <div class="row">
+          <div class="col-md-6">
+              <p>Precio por noche: $<span id="precio_noche">100.00</span></p>
+              <p>Número de noches: <span id="num_noches">0</span></p>
+          </div>
+          <div class="col-md-6">
+              <h4>Total: $<span id="precio_total">0.00</span></h4>
+          </div>
+      </div>
+  </div>
+</div>
+
+              <button type="submit" class="btn btn-primary btn-lg btn-block">Confirmar Reservación</button>
+          </form>
+              </div>
+              <div class="col-md-1"></div>
+              <div class="col-md-5">
+                <h3 class="mb-5">Habitación destacada</h3>
+                <div class="media d-block room mb-0">
+              <figure>
+                <img src="images/img_1.jpg" alt="Generic placeholder image" class="img-fluid">
+                <div class="overlap-text">
+                  <span>
+Habitación destacada
+                    <span class="ion-ios-star"></span>
+                    <span class="ion-ios-star"></span>
+                    <span class="ion-ios-star"></span>
+                  </span>
+                </div>
+              </figure>
+              <div class="media-body">
+                <h3 class="mt-0"><a href="#">Habitación presidencial</a></h3>
+                <ul class="room-specs">
+                  <li><span class="ion-ios-people-outline"></span> 2 Guests</li>
+                </ul>
+                <p>Nulla vel metus scelerisque ante sollicitudin. Fusce condimentum nunc ac nisi vulputate fringilla. </p>
+                <p><a href="#" class="btn btn-primary btn-sm">Reserva ya desde $80</a></p>
+              </div>
+            </div>
+              </div>
+        </div>
+      </div>
+    </section>
+    <!-- END section -->
+
+
+   
+   
+
+    <section class="section-cover" data-stellar-background-ratio="0.5" style="background-image: url(images/img_5.jpg);">
+      <div class="container">
+        <div class="row justify-content-center align-items-center intro">
+          <div class="col-md-9 text-center element-animate">
+            <h2>Relax and Enjoy your Holiday</h2>
+            <p class="lead mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto quidem tempore expedita facere facilis, dolores!</p>
+            <div class="btn-play-wrap"><a href="https://vimeo.com/channels/staffpicks/93951774" class="btn-play popup-vimeo "><span class="ion-ios-play"></span></a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END section -->
+   
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md-4">
+            <h3>Phone Support</h3>
+            <p>24/7 Call us now.</p>
+            <p class="lead"><a href="tel://">+ Numero de alguien aquí</a></p>
+          </div>
+          <div class="col-md-4">
+            <h3>Conecta con nosotros</h3>
+            <p>Siguenos!</p>
+            <p>
+              <a href="#" class="pl-0 p-3"><span class="fa fa-facebook"></span></a>
+              <a href="#" class="p-3"><span class="fa fa-twitter"></span></a>
+              <a href="#" class="p-3"><span class="fa fa-instagram"></span></a>
+              <a href="#" class="p-3"><span class="fa fa-vimeo"></span></a>
+              <a href="#" class="p-3"><span class="fa fa-youtube-play"></span></a>
+            </p>
+          </div>
+          <div class="col-md-4">
+            <h3>Conecta con nosotros</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, odio.</p>
+            <form action="#" class="subscribe">
+              <div class="form-group">
+                <button type="submit"><span class="ion-ios-arrow-thin-right"></span></button>
+                <input type="email" class="form-control" placeholder="Enter email">
+              </div>
+              
+            </form>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-7 text-center">
+            &copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </div>
+        </div>
+      </div>
+    </footer>
+    <form id="reservationForm" action="api/reservacion.php" method="POST">
+      <!-- Campo oculto para el ID de la habitación -->
+      <input type="hidden" id="room_id" name="room_id" value="">
+  
+      <!-- Muestra el precio total -->
+      <h3>Total a Pagar: <span id="room_price">$0.00</span></h3>
+      <!-- Resto del formulario -->
+    </form>
+    <!-- END footer -->
+    
+    <!-- loader -->
+    <div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#f4b214"/></svg></div>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery-migrate-3.0.0.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/magnific-popup-options.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+
+    
+
+    
+
+    <script src="js/main.js"></script>
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Al cargar la página, obtenemos los parámetros de la URL
+    const roomId = getQueryParams('room_id');
+    const roomPrice = getQueryParams('price');
+
+    // Actualizamos los valores de precio y habitación si están presentes
+    if (roomId && roomPrice) {
+        document.getElementById('room_id').value = roomId;
+        document.getElementById('precio_noche').textContent = roomPrice;
+        document.getElementById('precio_total').textContent = roomPrice;
+    }
+
+    // Inicializar valores
+    document.getElementById('num_noches').textContent = '1';
+    actualizarTotal(); // Actualizar total inicial
+});
+
+// Función para obtener parámetros de consulta de la URL
+function getQueryParams(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+// Función para calcular el total en base a las fechas seleccionadas
+function actualizarTotal() {
+    const arrivalDate = $('#arrival_date').datepicker('getDate');
+    const departureDate = $('#departure_date').datepicker('getDate');
+
+    // Verifica que ambas fechas estén seleccionadas
+    if (arrivalDate && departureDate) {
+        // Verifica que la fecha de salida sea después de la de llegada
+        if (departureDate > arrivalDate) {
+            // Calcula la diferencia en días
+            const diffTime = departureDate - arrivalDate;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+            // Actualizamos el número de noches
+            document.getElementById('num_noches').textContent = diffDays;
+
+            // Multiplicamos el precio por noche por el número de noches
+            const precioPorNoche = parseFloat(document.getElementById('precio_noche').textContent);
+            const total = (precioPorNoche * diffDays).toFixed(2);
+            document.getElementById('precio_total').textContent = total;
+        } else if (departureDate.getTime() === arrivalDate.getTime()) {
+            // Si es el mismo día, establecemos 1 noche
+            document.getElementById('num_noches').textContent = '1';
+            const precioPorNoche = parseFloat(document.getElementById('precio_noche').textContent);
+            document.getElementById('precio_total').textContent = precioPorNoche.toFixed(2);
+        } else {
+            alert('La fecha de salida no puede ser anterior a la fecha de llegada.');
+            // Resetear el campo de fecha de salida
+            $('#departure_date').datepicker('setDate', null);
+        }
+    }
+}
+
+// jQuery para inicializar el datepicker
+$(document).ready(function() {
+    // Configuración del datepicker
+    $('#arrival_date').datepicker({
+        format: 'yyyy-mm-dd',
+        startDate: 'today',
+        autoclose: true
+    }).on('changeDate', function() {
+        // Al cambiar la fecha de llegada, actualizar la fecha mínima de salida
+        const minDate = $('#arrival_date').datepicker('getDate');
+        $('#departure_date').datepicker('setStartDate', minDate);
+        actualizarTotal();
+    });
+
+    $('#departure_date').datepicker({
+        format: 'yyyy-mm-dd',
+        startDate: 'today',
+        autoclose: true
+    }).on('changeDate', function() {
+        actualizarTotal();
+    });
+
+    // Mostrar/ocultar campos de pago con tarjeta
+    $('#tipo_pago').change(function() {
+        if ($(this).val() === 'tarjeta') {
+            $('#tarjeta_fields').show();
+        } else {
+            $('#tarjeta_fields').hide();
+        }
+    });
+
+    // Manejador del formulario
+    $('#reservationForm').submit(function(e) {
+        e.preventDefault();
+        const reservationData = {
+            token: "d0fcbfc3d2abf89fcda41a892a1cf3bf", // Token de ejemplo
+            usu_nombre: $('#usu_nombre').val(),
+            usu_apellido: $('#usu_apellido').val(),
+            usu_pais: $('#usu_pais').val(),
+            usu_telefono: $('#usu_telefono').val(),
+            usu_email: $('#email').val(),
+            tipo_pago: $('#tipo_pago').val(),
+            pago_titular: $('#pago_titular').val(),
+            pago_numtar: $('#pago_numtar').val(),
+            pago_mesven: $('#pago_mesven').val(),
+            pago_anoven: $('#pago_anoven').val(),
+            res_checkIn: $('#arrival_date').val(),
+            res_checkOut: $('#departure_date').val(),
+            res_cant_adul: $('#adults').val(),
+            res_cant_ninos: $('#children').val(),
+            res_estado: "Pagada", // Estado fijo para este ejemplo
+            res_numRoom: document.getElementById('room_id').value, // ID de la habitación
+            res_nota: $('#message').val(),
+            res_total: document.getElementById('precio_total').textContent // Total dinámico
+        };
+
+        // Mostrar indicador de carga
+        const loader = document.getElementById('loader');
+        if (loader) loader.classList.remove('d-none');
+
+        console.log('Enviando datos:', reservationData); // Para depurar
+
+        fetch('http://localhost/hoteles/api/reservacion.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer guest123',
+            },
+            body: JSON.stringify(reservationData),
+        })
+        .then(response => response.text()) // Leemos la respuesta como texto primero
+        .then(text => {
+            console.log('Respuesta de la API:', text);
+            try {
+                const data = JSON.parse(text); // Intentamos parsear el JSON
+                if (data.status === 'ok') {
+                    alert('Reservación procesada con éxito');
+                    $('#reservationForm')[0].reset(); // Resetear el formulario
+                    loader.classList.add('d-none');
+                } else {
+                    alert('Error: ' + data.result.error_msg);
+                }
+            } catch (error) {
+                alert('Error al procesar la reservación: la respuesta no es JSON');
+                console.error('Error al parsear JSON:', error);
+                loader.classList.add('d-none');
+            }
+        })
+        .catch(error => {
+            alert('Error al procesar la reservación');
+            console.error('Error:', error);
+            loader.classList.add('d-none');
+        });
+    });
+});
+
+    </script>
+</body>
+</html>

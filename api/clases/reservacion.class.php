@@ -153,14 +153,29 @@ class reservacion extends conexion{
             return 0;
         }
     }
-
+    private function formatDate($date){
+        // Detectar si la fecha está en formato MM/DD/YYYY
+        if (preg_match("/^\d{2}\/\d{2}\/\d{4}$/", $date)) {
+            $dateParts = explode("/", $date);
+            return "{$dateParts[2]}-{$dateParts[0]}-{$dateParts[1]}"; // Convertir a YYYY-MM-DD
+        }
+        
+        // Si ya está en formato YYYY-MM-DD, devolverla sin cambios
+        if (preg_match("/^\d{4}-\d{2}-\d{2}$/", $date)) {
+            return $date;
+        }
+        
+        // Si el formato no es válido, devolver una fecha nula o manejar el error
+        return "0000-00-00";
+    }
     private function insertarReservacion(){
         $query = "INSERT INTO Reservacion (Num_reserv, Fecha_ent, Fecha_sal, Estado, Num_adult, Num_ninos, Precio, ID_cliente_FK, Comentarios)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
         
         $num_reserva = rand(100000, 999999);
-        $checkIn = $this->checkIn;
-        $checkOut = $this->checkOut;
+        // Transformar las fechas al formato YYYY-MM-DD si es necesario
+        $checkIn = $this->formatDate($this->checkIn);
+        $checkOut = $this->formatDate($this->checkOut);
         $estado = $this->estado;
         $num_adultos = $this->num_adultos;
         $num_ninos = $this->num_ninos;
