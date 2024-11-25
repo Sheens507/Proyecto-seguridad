@@ -129,19 +129,44 @@ class Conexion{
         }
         // Lista de patrones típicos de inyección SQL
         $patrones = [
-            '/\bselect\b/',      // SELECT
-            '/\binsert\b/',      // INSERT
-            '/\bupdate\b/',      // UPDATE
-            '/\bdelete\b/',      // DELETE
-            '/\bdrop\b/',        // DROP
-            '/\bunion\b/',       // UNION
-            '/\bor\b/',          // OR
-            '/\b--\b/',          // Comentario SQL --
-            '/\b#\b/',           // Comentario SQL #
-            '/\b;/',             // Punto y coma ;
-            '/\b\'\b/',          // Comilla simple '
-            '/\b\"/',            // Comilla doble "
+            '/\bselect\b/i',                // SELECT
+            '/\binsert\b/i',                // INSERT
+            '/\bupdate\b/i',                // UPDATE
+            '/\bdelete\b/i',                // DELETE
+            '/\bdrop\b/i',                  // DROP
+            '/\bunion\b/i',                 // UNION
+            '/\bor\b/i',                    // OR
+            '/\b--\b/',                     // Comentario SQL --
+            '/\b#\b/',                      // Comentario SQL #
+            '/\b;/',                        // Punto y coma ;
+            '/\b\'\b/',                     // Comilla simple '
+            '/\b\"/',                       // Comilla doble "
+            
+            // Nuevos patrones de inyección SQL
+            '/\'\s*or\s*\'[01]\'\s*=\s*\'[01]\'/i',  // ' OR '1'='1'
+            '/\'\s*or\s*1=1\s*--/i',                // ' OR 1=1 --
+            '/\'\s*or\s*\'[a-z]\'=\s*\'[a-z]\'/i',  // ' OR 'x'='x'
+            '/\bunion\b\s*select\s*.*--/i',         // UNION SELECT null, username, password FROM users --
+            '/;\s*drop\s+table\s+.*--/i',           // ; DROP TABLE users --
+            '/\bexists\b.*--/i',                    // OR EXISTS(SELECT * FROM users WHERE username='admin') --
+            '/\bexec\b\s*.*xp_cmdshell/i',          // EXEC xp_cmdshell('net user malicious user /add') --
+            '/\bshutdown\b\s*--/i',                 // SHUTDOWN --
+            '/\bsleep\b\s*\(\d+\)/i',               // sleep(5)
+            '/\bhaving\b\s+1=1/i',                  // 1=1 HAVING 1=1
+            '/\bupdate\b\s+users\b.*--/i',          // UPDATE users SET password = 'malicious'
+            '/\binsert\b\s+into\s+users\b.*--/i',   // INSERT INTO users (username, password) VALUES
+            '/\bcreate\b\s+table\b/i',              // CREATE TABLE test (id INT, name VARCHAR(100)) --
+            '/\border\s+by\s+1/i',                  // ORDER BY 1 --
+            '/\bshow\s+databases\b/i',              // SHOW DATABASES --
+            '/\bwaitfor\s+delay\b/i',               // WAITFOR DELAY '00:00:10'
+            '/\btruncate\s+table\b/i',              // TRUNCATE TABLE users
+            '/\bgrant\s+all\s+privileges\b/i',      // GRANT ALL PRIVILEGES TO 'attacker'
+            '/\bexecute\s+immediate\b/i',           // EXECUTE IMMEDIATE 'DROP TABLE users'
+            '/\bselect\b.*from\s+information_schema/i', // SELECT * FROM information_schema.tables
+            '/\bselect\b.*from\s+sysdatabases/i',   // SELECT TOP 1 name FROM sysdatabases
         ];
+        
+        
     
         // Función auxiliar para verificar si un valor es seguro
         function esValorSeguro($valor, $patrones) {

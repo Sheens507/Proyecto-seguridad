@@ -142,7 +142,7 @@ function validateCardNumber(cardNumber) {
 }
 
 function fetchAvailableRooms() {
-    const url = `http://localhost/hoteles/api/reservacion`;
+    const url = `http://localhost/Proyecto-seguridad/api/reservacion`;
     const params = {
         action: "consulta",
         token: token,
@@ -225,7 +225,7 @@ function submitForm() {
             res_total: "111.00"
         };
 
-        const url = `http://localhost/hoteles/api/reservacion`;
+        const url = `http://localhost/Proyecto-seguridad/api/reservacion`;
         const params = {
             action: "insertar",
             ...reservationDetails

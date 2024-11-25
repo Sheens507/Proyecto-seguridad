@@ -180,7 +180,8 @@
 
                             <!-- Botón de pago para Yappy -->
             <div id="yappy_button_container" style="display: none; margin-top: 20px;">
-              <button id="yappy_button" class="btn btn-success btn-lg btn-block" onclick="processYappyPayment()">Pagar con Yappy</button>
+              <!-- <button id="yappy_button" class="btn btn-success btn-lg btn-block" onclick="processYappyPayment()">Pagar con Yappy</button> -->
+              <button id="yappy_button" class="btn btn-success btn-lg btn-block" >Pagar con Yappy</button>
             </div>
 
             <script>
@@ -615,7 +616,7 @@ $(document).ready(function() {
         const loader = document.getElementById('loader');
         if (loader) loader.classList.remove('d-none');
 
-        fetch('http://localhost/hoteles/api/reservacion.php', {
+        fetch('https://localhost/Proyecto-seguridad/api/reservacion.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
