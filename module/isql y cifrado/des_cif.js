@@ -11,14 +11,37 @@
     document.head.appendChild(script);
 })();
 
+// Cargar la clave desde clave.json
+let clave = null;
+
+async function cargarClave() {
+    try {
+        const response = await fetch('../module/isql y cifrado/claves.json');
+        if (!response.ok) throw new Error("Error al cargar la clave.");
+        const data = await response.json();
+        clave = data.clave;
+        console.log("Clave cargada correctamente.");
+    } catch (error) {
+        console.error("Error al cargar la clave:", error);
+    }
+}
+
+// Llama a cargarClave al cargar la página
+cargarClave();
+
 // Función para cifrar o descifrar el texto
 function crypto_js(opcion, texto) {
+    if (!clave) {
+        // document.getElementById("resultado").textContent = "Clave no cargada. Intente nuevamente.";
+        console.log("Clave no cargada. Intente nuevamente.");
+        return;
+    }
+
     let generacion;
-    const clave = "Bp0FXqG=Lv6C,t,t_FLxUF?A5DxmCv"; // Esta es la clave para cifrar y descifrar
 
     // Validar que el texto no esté vacío
     if (texto.trim() === "" || texto === null || texto === undefined || texto.length <= 4) {
-        document.getElementById("resultado").textContent = "Campo vacio o muy corto";
+        document.getElementById("resultado").textContent = "Campo vacío o muy corto";
         return;
     }
 
@@ -26,19 +49,15 @@ function crypto_js(opcion, texto) {
     if (opcion === 1) {
         generacion = cifrarTexto(texto, clave);
         return generacion;
+        // document.getElementById("resultado").textContent = `Cifrado: ${generacion}`;
+        if (generacion) {
+            return generacion;
+        }
     } else if (opcion === 2) {
         generacion = descifrarTexto(texto, clave);
+        // document.getElementById("resultado").textContent = `Descifrado: ${generacion}`;
     } else {
-        document.getElementById("resultado").textContent = "Error: opción no válida";
-        return;
-    }
-
-    // Mostrar el resultado en el párrafo
-    if (opcion === 1) {
-        document.getElementById("resultado").textContent = `Cifrado: ${generacion}`;
-        return;
-    } else if (opcion === 2) {
-        document.getElementById("resultado").textContent = `Decifrado: ${generacion}`;
+        // document.getElementById("resultado").textContent = "Error: opción no válida";
     }
 }
 
@@ -54,7 +73,6 @@ function descifrarTexto(texto, clave) {
     // Descifrar el texto usando AES
     const bytes = CryptoJS.AES.decrypt(texto, clave);
     const textoDescifrado = bytes.toString(CryptoJS.enc.Utf8);
-
     return textoDescifrado;
 }
 
