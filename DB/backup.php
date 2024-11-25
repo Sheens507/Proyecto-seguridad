@@ -2,8 +2,8 @@
 $host = "127.0.0.1";
 $user = "root";
 $pass = "";
-$db = "BDHotel1";
-$backupFile = "backup/BDHotel1" . $db . "_" . date("Y-m-d_H-i-s") . ".sql";
+$db = "BDHotel";
+$backupFile = "backup/BDHotel" . $db . "_" . date("Y-m-d_H-i-s") . ".sql";
 
 // Comando de exportación
 $command = "mysqldump -h $host -u $user -p$pass $db > $backupFile";
