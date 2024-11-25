@@ -178,6 +178,33 @@
                   </div>
               </div>
 
+                            <!-- Botón de pago para Yappy -->
+            <div id="yappy_button_container" style="display: none; margin-top: 20px;">
+              <button id="yappy_button" class="btn btn-success btn-lg btn-block" onclick="processYappyPayment()">Pagar con Yappy</button>
+            </div>
+
+            <script>
+              // Detectar cambios en el método de pago
+              document.getElementById("tipo_pago").addEventListener("change", function () {
+                  const paymentMethod = this.value;
+                  const yappyButtonContainer = document.getElementById("yappy_button_container");
+                  const yappyButton = document.getElementById("yappy_button");
+
+                  if (paymentMethod === "yappy") {
+                      yappyButtonContainer.style.display = "block";
+                      yappyButton.disabled = false; // Habilita el botón
+                  } else {
+                      yappyButtonContainer.style.display = "none";
+                      yappyButton.disabled = true; // Deshabilita el botón
+                  }
+              });
+
+              function processYappyPayment() {
+                  // Redirige al flujo de pago con Yappy
+                  window.location.href = "yappy.html";
+              }
+            </script>
+
               <!-- Campos de tarjeta (se muestran/ocultan según el método de pago) -->
               <div id="tarjeta_fields" style="display: none;">
                   <div class="row">
@@ -254,6 +281,23 @@
       </div>
   </div>
 </div>
+
+
+<script>
+  // Función para redirigir a yappy.html con el total
+  function redirectToYappyPage() {
+      const total = document.getElementById("precio_total").textContent;
+      localStorage.setItem("precioTotal", total); // Guarda el total en almacenamiento local
+      window.location.href = "yappy.html"; // Redirige a yappy.html
+  }
+
+  // Añade esta función al botón de pago con Yappy
+  document.getElementById("yappy_button").addEventListener("click", function (event) {
+      event.preventDefault(); // Evita el envío del formulario
+      redirectToYappyPage();
+  });
+</script>
+
 
               <button type="submit" class="btn btn-primary btn-lg btn-block">Confirmar Reservación</button>
           </form>
