@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservaciones</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #ffffff;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        table th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        #logoutButton {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #logoutButton:hover {
+            background-color: #e53935;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Reservaciones</h1>
+    <table id="reservacionesTable">
+        <thead>
+            <tr>
+                <th>ID Reservación</th>
+                <th>Número</th>
+                <th>Fecha Entrada</th>
+                <th>Fecha Salida</th>
+                <th>Estado</th>
+                <th>Adultos</th>
+                <th>Niños</th>
+                <th>Comentarios</th>
+                <th>Precio</th>
+                <th>ID Cliente</th>
+                <th>Nombre Cliente</th>
+                <th>Apellido Cliente</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Contenido dinámico aquí -->
+        </tbody>
+    </table>
+    
+    <!-- Botón de Logout -->
+    <button id="logoutButton">Cerrar sesión</button>
+
+    <script>
+        // Llamada al archivo PHP para obtener los datos de las reservaciones
+        fetch('resume.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    // Muestra el error devuelto por el servidor
+                    console.error(data.error);
+                } else {
+                    console.log(data);
+                    const tableBody = document.querySelector('#reservacionesTable tbody');
+                    data.forEach(reserva => {
+                        const row = `
+                            <tr>
+                                <td>${reserva.ID_reserv}</td>
+                                <td>${reserva.Num_reserv}</td>
+                                <td>${reserva.Fecha_ent}</td>
+                                <td>${reserva.Fecha_sal}</td>
+                                <td>${reserva.Estado}</td>
+                                <td>${reserva.Num_adult}</td>
+                                <td>${reserva.Num_ninos}</td>
+                                <td>${reserva.Comentarios}</td>
+                                <td>${reserva.Precio}</td>
+                                <td>${reserva.ID_cliente_FK}</td>
+                                <td>${reserva.Nombre_cli}</td>
+                                <td>${reserva.Apellido_cli}</td>
+                            </tr>
+                        `;
+                        tableBody.innerHTML += row;
+                    });
+                }
+            })
+            .catch((error) => {
+                // Manejo de errores para problemas en la llamada fetch
+                console.error('Error al cargar los datos:', error);
+            });
+
+        // Función para hacer logout
+        document.getElementById('logoutButton').addEventListener('click', () => {
+            fetch('logout.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "ok") {
+                    alert("Sesión cerrada correctamente.");
+                    window.location.href = "login.html"; // Redirigir a la página de login
+                } else {
+                    alert("Hubo un error al cerrar la sesión.");
+                }
+            })
+            .catch((error) => {
+                console.error('Error al cerrar sesión:', error);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -69,6 +69,92 @@
                 return 0;
             }
         }
-    }
 
+        public function logout($json) {
+            $_respuesta = new respuestas;
+            $datos = json_decode($json, true);
+            $isql = $this->antiSQL($datos);
+            if(!$isql){
+                return $_respuesta->error_422();
+            }
+            if(!isset($datos['token'])){
+                return $_respuesta->error_400();
+            }else{
+                // Verificar si el token existe
+                $query = "SELECT usuario_id FROM usuarios_token WHERE token = ? AND estado = 'Activo'";
+                $params = array($datos['token']);
+                $resp = parent::obtenerDatos($query, $params);
+        
+                if ($resp) {
+                    // Cambiar el estado a "Inactivo"
+                    $usuarioId = $resp[0]['usuario_id'];
+                    $updateQuery = "UPDATE usuarios_token SET estado = 'Inactivo' WHERE token = ?";
+                    $updateParams = array($datos['token']);
+                    $verificar = parent::nonQuery($updateQuery, $updateParams);
+        
+                    if ($verificar) {
+                        return $_respuesta->response;
+                    } else {
+                        return $_respuesta->error_500("Error al cerrar sesión. Intente nuevamente.");
+                    }
+                } else {
+                    return $_respuesta->error_200("Token inválido o ya inactivo.");
+                }
+            }
+        }
+
+        public function validarToken($json){
+            $_respuesta = new respuestas;
+            $datos = json_decode($json, true);
+            $isql = $this->antiSQL($datos);
+            if(!$isql){
+                return $_respuesta->error_422();
+            }
+            if(!isset($datos['token'])){
+                return $_respuesta->error_400();
+            }else{
+                $token = $datos['token'];
+                $verificar = $this->verificarToken($token);
+                if($verificar){
+                    return $verificar;
+                }else{
+                    return $_respuesta->error_401("Token inválido o expirado.");
+                }
+            }
+        }
+
+        private function verificarToken($token){
+            $_respuesta = new respuestas;
+            // Consulta para verificar el token
+            $query = "SELECT usuario_id FROM usuarios_token WHERE token = ? AND estado = 'Activo'";
+            $params = array($token);
+            $datos = parent::obtenerDatos($query, $params);
+
+            if ($datos) {
+                // Si el token existe y está activo, devolver el ID del usuario
+                return array(
+                    "status" => "ok",
+                    "usuario_id" => $datos[0]['usuario_id']
+                );
+            } else {
+                // Si el token no es válido o está inactivo
+                return $_respuesta->error_401("Token inválido o expirado.");
+            }
+        }
+
+        public function listaReservaciones($pagina = 1){
+            $inicio = 0;
+            $cantidad = 100;
+            if($pagina > 1){
+                $inicio = ($cantidad * ($pagina - 1)) + 1;
+                $cantidad = $cantidad * $pagina;
+            }
+            // $query = "SELECT * FROM reservacion LIMIT ?, ?";
+            $query = "SELECT r.*, c.Nombre_cli, c.Apellido_cli FROM reservacion r JOIN cliente c ON r.ID_cliente_FK = c.ID_cliente LIMIT ?, ?";
+            $params = array($inicio, $cantidad);
+            // print_r($query); // Debug: verificar la consulta
+            $datos = parent::obtenerDatos($query, $params);
+            return $datos;
+        }
+    }
 ?>
