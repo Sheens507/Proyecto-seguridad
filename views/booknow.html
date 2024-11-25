@@ -571,8 +571,6 @@ $(document).ready(function() {
         const loader = document.getElementById('loader');
         if (loader) loader.classList.remove('d-none');
 
-        console.log('Enviando datos:', reservationData); // Para depurar
-
         fetch('http://localhost/hoteles/api/reservacion.php', {
             method: 'POST',
             headers: {

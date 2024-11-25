@@ -2,7 +2,7 @@
     require_once 'respuestas.class.php';
 
     class seguridad {
-        public function rateLimit($ip, $limit = 100, $duration = 3600) {
+        public function rateLimit($ip, $limit = 15, $duration = 3600) {
             // Define el archivo para almacenar los datos de la IP
             $file = 'rate_limit.json';
             

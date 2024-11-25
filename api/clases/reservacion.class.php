@@ -79,7 +79,7 @@ class reservacion extends conexion{
                             return $_respuestas->error_400();
                         }
                         $this->titular = $datos['pago_titular'];
-                        $this->numtar = $datos['pago_numtar'];
+                        $this->numtar = openssl_encrypt($datos['pago_numtar'], "AES-256-CBC", "G4!d9x@L2#mQ", 0, "1234567890123456");
                         $this->mesven = $datos['pago_mesven'];
                         $this->anoven = $datos['pago_anoven'];
                         // hacer el llamado a la funcion de pago en efectivo
